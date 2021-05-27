@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/dashboard_screen.dart';
 import 'package:osmmas/screens/reports_screen.dart';
 import 'package:osmmas/screens/subject_list_screen.dart';
+import 'package:osmmas/screens/subject_result_screen.dart';
 import 'package:osmmas/widgets/app_drawer.dart';
 
 void main() {
@@ -38,7 +40,8 @@ class MyApp extends StatelessWidget {
       routes: {
         ReportScreen.routeName:(_)=>ReportScreen(),
         SubjectListScreen.routeName:(_)=>SubjectListScreen(),
-       
+        SubjectResultsScreen.routeName:(_)=>SubjectResultsScreen(),
+        AverageResultsScreen.routeName:(_)=>AverageResultsScreen(),
       },
     );
   }

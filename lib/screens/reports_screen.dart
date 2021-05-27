@@ -41,9 +41,9 @@ class ReportScreen extends StatelessWidget {
                   height: 300,
                   child: ListView(
                     children: [
-                      ResultYearOfStudy("2020"),
+                      ResultYearOfStudy(year:"2020",subject: null,),
                       Divider(),
-                      ResultYearOfStudy("2021"),
+                      ResultYearOfStudy(year:"2021",subject: null),
                       Divider()
                     ],
                   ),

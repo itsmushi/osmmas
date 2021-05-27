@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/screens/average_result_screen.dart';
+import 'package:osmmas/screens/subject_result_screen.dart';
 import 'package:osmmas/widgets/page_title.dart';
 import 'package:osmmas/widgets/result_year_of_study.dart';
 
@@ -48,16 +50,23 @@ class SubjectListScreen extends StatelessWidget {
                         //for the average Results
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushNamed(AverageResultsScreen.routeName);
+                            },
                             child: Text("Average Results",
                                 style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold))),
                       ),
-                      ResultYearOfStudy("Chemistry O-Level "),
+                      ResultYearOfStudy(
+                        year: "Chemistry O-Level ",
+                        subject: "Chemistry O-Level",
+                      ),
                       Divider(),
-                      ResultYearOfStudy("Physics O-Level"),
+                      ResultYearOfStudy(
+                          year: "Physics O-Level", subject: "Physics O-Level"),
                       Divider()
                     ],
                   ),
