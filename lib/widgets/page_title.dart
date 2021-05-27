@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class PageTitle extends StatelessWidget {
   final String title;
-  PageTitle(this.title);
+  final bool showIcon;
+  PageTitle(this.title,this.showIcon);
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +14,12 @@ class PageTitle extends StatelessWidget {
         child: Row(
           
           children: [
+            showIcon?
             Icon(
               Icons.desktop_mac,
               color: Color.fromRGBO(96, 100, 102, 1.0),
               size: 20,
-            ),
+            ):SizedBox(width: 20,),
             Container(
               padding: EdgeInsets.only(left: 10),
               child: Text(

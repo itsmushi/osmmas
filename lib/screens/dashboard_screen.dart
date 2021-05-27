@@ -10,7 +10,7 @@ class DashboardScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PageTitle("DASHBOARD"),
+              PageTitle("DASHBOARD",true),
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/screens/dashboard_screen.dart';
 import 'package:osmmas/screens/reports_screen.dart';
+import 'package:osmmas/screens/subject_list_screen.dart';
 import 'package:osmmas/widgets/app_drawer.dart';
 
 void main() {
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes: {
         ReportScreen.routeName:(_)=>ReportScreen(),
+        SubjectListScreen.routeName:(_)=>SubjectListScreen(),
        
       },
     );
