@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/screens/student_info_sreen.dart';
 import 'package:osmmas/screens/suggestion_screen.dart';
 
 import '../screens/reports_screen.dart';
@@ -46,6 +47,9 @@ class AppDrawer extends StatelessWidget {
             Divider(),
             ListTile(
               title: Text("Student Info"),
+              onTap: () {
+                Navigator.of(context).pushNamed(StudentInfoScreen.routeName);
+              },
             ),
             Divider(),
             ListTile(
