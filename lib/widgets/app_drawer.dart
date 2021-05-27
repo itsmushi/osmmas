@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/screens/suggestion_screen.dart';
 
 import '../screens/reports_screen.dart';
 
@@ -38,6 +39,9 @@ class AppDrawer extends StatelessWidget {
             Divider(),
             ListTile(
               title: Text("Suggestion"),
+              onTap: () {
+                Navigator.pushNamed(context, SuggestionScreen.routeName);
+              },
             ),
             Divider(),
             ListTile(

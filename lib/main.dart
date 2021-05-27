@@ -4,6 +4,7 @@ import 'package:osmmas/screens/dashboard_screen.dart';
 import 'package:osmmas/screens/reports_screen.dart';
 import 'package:osmmas/screens/subject_list_screen.dart';
 import 'package:osmmas/screens/subject_result_screen.dart';
+import 'package:osmmas/screens/suggestion_screen.dart';
 import 'package:osmmas/widgets/app_drawer.dart';
 
 void main() {
@@ -38,10 +39,11 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(),
       routes: {
-        ReportScreen.routeName:(_)=>ReportScreen(),
-        SubjectListScreen.routeName:(_)=>SubjectListScreen(),
-        SubjectResultsScreen.routeName:(_)=>SubjectResultsScreen(),
-        AverageResultsScreen.routeName:(_)=>AverageResultsScreen(),
+        ReportScreen.routeName: (_) => ReportScreen(),
+        SubjectListScreen.routeName: (_) => SubjectListScreen(),
+        SubjectResultsScreen.routeName: (_) => SubjectResultsScreen(),
+        AverageResultsScreen.routeName: (_) => AverageResultsScreen(),
+        SuggestionScreen.routeName: (_) => SuggestionScreen(),
       },
     );
   }
@@ -60,11 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Osmmas"),
       ),
       body: DashboardScreen(),
-      
       drawer: AppDrawer(),
-       
-      
     );
-    
   }
 }
