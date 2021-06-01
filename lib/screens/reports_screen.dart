@@ -16,7 +16,7 @@ class ReportScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PageTitle("YEAR OF STUDY",false),
+                PageTitle("YEAR OF STUDY", false),
               ],
             ),
           ),
@@ -41,9 +41,12 @@ class ReportScreen extends StatelessWidget {
                   height: 300,
                   child: ListView(
                     children: [
-                      ResultYearOfStudy(year:"2020",subject: null,),
+                      ResultYearOfStudy(
+                        year: "2020",
+                        subject: null,
+                      ),
                       Divider(),
-                      ResultYearOfStudy(year:"2021",subject: null),
+                      ResultYearOfStudy(year: "2021", subject: null),
                       Divider()
                     ],
                   ),

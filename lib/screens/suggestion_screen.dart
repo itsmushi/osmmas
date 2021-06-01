@@ -19,11 +19,14 @@ class SuggestionScreen extends StatelessWidget {
             child: Column(
               children: [
                 PageTitle("SUGGESTIONS", false),
-                Text(
-                  "From Parents",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Color.fromRGBO(96, 100, 102, 1.0), fontSize: 16),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "From Parents",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color.fromRGBO(96, 100, 102, 1.0), fontSize: 16),
+                  ),
                 ),
               ],
             ),
@@ -32,7 +35,7 @@ class SuggestionScreen extends StatelessWidget {
             width: 500,
             height: 600,
             child: swipperWidget(),
-          )
+          ),
         ]));
   }
 }

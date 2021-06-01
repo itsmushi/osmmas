@@ -1,23 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/providers/event.dart';
+
+import 'package:provider/provider.dart';
+
+import '../providers/dashboard.dart';
 import 'package:osmmas/widgets/page_title.dart';
 
 class DashboardScreen extends StatelessWidget {
+  Future<void> _refreshDashboard(
+    BuildContext context,
+  ) async {
+    await Provider.of<Dashboard>(context).fetchEvents();
+  }
+
+  bool firstTime = true;
+  int count = 1;
+  bool showLoading = true;
+
+  List<Event> eventsData;
   @override
   Widget build(BuildContext context) {
+    if (firstTime) {
+      _refreshDashboard(context).then((value) => {
+            eventsData = Provider.of<Dashboard>(context, listen: false).events,
+            showLoading = false,
+            firstTime = false,
+          });
+    }
+
     return Column(
       children: [
         Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PageTitle("DASHBOARD",true),
+              PageTitle("DASHBOARD", true),
             ],
           ),
         ),
         Card(
           elevation: 8,
           margin: EdgeInsets.symmetric(horizontal: 16),
-                  child: Container(
+          child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -30,47 +54,53 @@ class DashboardScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
-                DataTable(
-                    decoration:
-                        BoxDecoration(color: Color.fromRGBO(255, 254, 254, 1)),
-                    columns: [
-                      DataColumn(
-                        label: Text(
-                          "#",
-                          style: TextStyle(
-                            color: Color.fromRGBO(104, 138, 126, 1),
-                            fontSize: 16,
+                showLoading
+                    ? Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [CircularProgressIndicator()],
+                        ),
+                      )
+                    : DataTable(
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(255, 254, 254, 1)),
+                        columns: [
+                          DataColumn(
+                            label: Text(
+                              "#",
+                              style: TextStyle(
+                                color: Color.fromRGBO(104, 138, 126, 1),
+                                fontSize: 16,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text("Date",
-                            style: TextStyle(
-                              color: Color.fromRGBO(104, 138, 126, 1),
-                              fontSize: 16,
-                            )),
-                      ),
-                      DataColumn(
-                        label: Text("Event",
-                            style: TextStyle(
-                              color: Color.fromRGBO(104, 138, 126, 1),
-                              fontSize: 16,
-                            )),
-                      ),
-                    ],
-                    rows: [
-                      DataRow(cells: [
-                        DataCell(
-                          Text("1"),
-                        ),
-                        DataCell(
-                          Text("2021-04-21"),
-                        ),
-                        DataCell(
-                          Text("System check"),
-                        )
-                      ])
-                    ])
+                          DataColumn(
+                            label: Text("Date",
+                                style: TextStyle(
+                                  color: Color.fromRGBO(104, 138, 126, 1),
+                                  fontSize: 16,
+                                )),
+                          ),
+                          DataColumn(
+                            label: Text("Event",
+                                style: TextStyle(
+                                  color: Color.fromRGBO(104, 138, 126, 1),
+                                  fontSize: 16,
+                                )),
+                          ),
+                        ],
+                        //
+                        rows: eventsData.map(
+                          (e) {
+                            count++;
+                            return DataRow(cells: [
+                              DataCell(Text(count.toString())),
+                              DataCell(Text(e.date)),
+                              DataCell(Text(e.event))
+                            ]);
+                          },
+                        ).toList()),
               ],
             ),
           ),

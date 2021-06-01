@@ -7,6 +7,9 @@ import 'package:osmmas/screens/subject_list_screen.dart';
 import 'package:osmmas/screens/subject_result_screen.dart';
 import 'package:osmmas/screens/suggestion_screen.dart';
 import 'package:osmmas/widgets/app_drawer.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/dashboard.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,22 +34,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'osmmas',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.deepOrange,
-        // fontFamily: 'Lato',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: Dashboard(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'osmmas',
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.deepOrange,
+          // fontFamily: 'Lato',
+        ),
+        home: MyHomePage(),
+        routes: {
+          ReportScreen.routeName: (_) => ReportScreen(),
+          SubjectListScreen.routeName: (_) => SubjectListScreen(),
+          SubjectResultsScreen.routeName: (_) => SubjectResultsScreen(),
+          AverageResultsScreen.routeName: (_) => AverageResultsScreen(),
+          SuggestionScreen.routeName: (_) => SuggestionScreen(),
+          StudentInfoScreen.routeName: (_) => StudentInfoScreen(),
+        },
       ),
-      home: MyHomePage(),
-      routes: {
-        ReportScreen.routeName: (_) => ReportScreen(),
-        SubjectListScreen.routeName: (_) => SubjectListScreen(),
-        SubjectResultsScreen.routeName: (_) => SubjectResultsScreen(),
-        AverageResultsScreen.routeName: (_) => AverageResultsScreen(),
-        SuggestionScreen.routeName: (_) => SuggestionScreen(),
-        StudentInfoScreen.routeName:(_)=>StudentInfoScreen(),
-      },
     );
   }
 }
