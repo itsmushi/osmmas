@@ -24,8 +24,7 @@ class Dashboard with ChangeNotifier {
       if (extractedData == null) {
         return;
       }
-      print("list received");
-
+     
       final List<Event> loadedEvents = [];
       extractedData.forEach((eventData) {
         loadedEvents.add(

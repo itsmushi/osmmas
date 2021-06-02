@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/providers/subject.dart';
+import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/subject_result_screen.dart';
 import 'package:osmmas/widgets/page_title.dart';
 import 'package:osmmas/widgets/result_year_of_study.dart';
+import 'package:provider/provider.dart';
 
 class SubjectListScreen extends StatelessWidget {
   static const routeName = "subject-list";
 
-  // SubjectListScreen(this.yearOfStudy);
+  Future<void> _refreshSubjectList(BuildContext context, String year) async {
+    await Provider.of<SubjectList>(context).fetchSubjects(year);
+  }
+
+  bool firstTime = true;
+  bool showLoading = true;
+  List<Subject> subjectData;
+
+  List<Widget> subjectListWidgets = [];
+
   @override
   Widget build(BuildContext context) {
     final String yearOfStudy = ModalRoute.of(context).settings.arguments;
+    if (firstTime) {
+      _refreshSubjectList(context, yearOfStudy).then((value) => {
+            subjectData =
+                Provider.of<SubjectList>(context, listen: false).subjects,
+            showLoading = false,
+            firstTime = false,
+          });
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Osmmas"),
@@ -42,39 +62,49 @@ class SubjectListScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Container(
-                  height: 300,
-                  child: ListView(
-                    children: [
-                      Padding(
-                        //for the average Results
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed(AverageResultsScreen.routeName);
-                            },
-                            child: Text("Average Results",
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold))),
-                      ),
-                      ResultYearOfStudy(
-                        year: "Chemistry O-Level ",
-                        subject: "Chemistry O-Level",
-                      ),
-                      Divider(),
-                      ResultYearOfStudy(
-                          year: "Physics O-Level", subject: "Physics O-Level"),
-                      Divider()
-                    ],
-                  ),
-                ),
+                showLoading
+                    ? Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [CircularProgressIndicator()],
+                        ),
+                      )
+                    : buildSubjectListWidget(context),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildSubjectListWidget(BuildContext context) {
+    subjectListWidgets.add(Padding(
+      //for the average Results
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(AverageResultsScreen.routeName);
+          },
+          child: Text("Average Results",
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold))),
+    ));
+    subjectData.forEach((element) {
+      subjectListWidgets.add(Divider());
+      subjectListWidgets.add(ResultYearOfStudy(
+        year: element.subjectName,
+        subject: element.subjectName,
+      ));
+    });
+
+    return Container(
+      height: 300,
+      child: ListView(
+        children: subjectListWidgets,
       ),
     );
   }

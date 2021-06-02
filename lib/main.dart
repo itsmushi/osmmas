@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/dashboard_screen.dart';
 import 'package:osmmas/screens/reports_screen.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: Dashboard(),
+        ),
+        ChangeNotifierProvider.value(
+          value: SubjectList(),
         ),
       ],
       child: MaterialApp(
