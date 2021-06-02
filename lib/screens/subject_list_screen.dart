@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:osmmas/providers/subject.dart';
+
 import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/subject_result_screen.dart';
+
+import '../models/subject.dart';
+
 import 'package:osmmas/widgets/page_title.dart';
 import 'package:osmmas/widgets/result_year_of_study.dart';
 import 'package:provider/provider.dart';
@@ -70,7 +73,7 @@ class SubjectListScreen extends StatelessWidget {
                           children: [CircularProgressIndicator()],
                         ),
                       )
-                    : buildSubjectListWidget(context),
+                    : buildSubjectListWidget(context,yearOfStudy),
               ],
             ),
           ),
@@ -79,7 +82,7 @@ class SubjectListScreen extends StatelessWidget {
     );
   }
 
-  Widget buildSubjectListWidget(BuildContext context) {
+  Widget buildSubjectListWidget(BuildContext context,String yearOfStudy) {
     subjectListWidgets.add(Padding(
       //for the average Results
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -96,8 +99,9 @@ class SubjectListScreen extends StatelessWidget {
     subjectData.forEach((element) {
       subjectListWidgets.add(Divider());
       subjectListWidgets.add(ResultYearOfStudy(
-        year: element.subjectName,
+        year: yearOfStudy,
         subject: element.subjectName,
+        subjectCode:element.subjectOf
       ));
     });
 

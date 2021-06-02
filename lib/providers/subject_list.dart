@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:osmmas/providers/subject.dart';
+import '../models/subject.dart';
 
 class SubjectList with ChangeNotifier {
   List<Subject> _subjects = [];
@@ -25,7 +25,7 @@ class SubjectList with ChangeNotifier {
       if (extractedData == null) {
         return;
       }
-      print("list received");
+  
 
       final List<Subject> loadedSubjects = [];
 

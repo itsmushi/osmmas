@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:osmmas/providers/event.dart';
 
 import 'package:provider/provider.dart';
 
+import '../models/event.dart';
 import '../providers/dashboard.dart';
 import 'package:osmmas/widgets/page_title.dart';
 

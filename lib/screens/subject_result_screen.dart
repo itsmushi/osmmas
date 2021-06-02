@@ -1,11 +1,45 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:osmmas/models/month_result.dart';
+import 'package:osmmas/providers/subject_result.dart';
+import 'package:provider/provider.dart';
 import 'package:osmmas/widgets/page_title.dart';
 
 class SubjectResultsScreen extends StatelessWidget {
   static const routeName = "subject-results";
+
+  Future<void> _refreshResultList(
+      BuildContext context, String year, String code) async {
+    await Provider.of<SubjectResult>(context).fetchResults(year, code);
+  }
+
+  bool firstTime = true;
+  bool showLoading = true;
+  List<MonthResult> resultsData;
+
   @override
   Widget build(BuildContext context) {
-    final subjectName = ModalRoute.of(context).settings.arguments;
+    //   // final subjectName = ModalRoute.of(context).settings.arguments;
+    //  final  subjectName="dfs";
+    List<String> argmentList = ModalRoute.of(context).settings.arguments;
+
+    print(argmentList[1]);
+
+    if (firstTime) {
+      _refreshResultList(context, argmentList[1], argmentList[2]).then(
+        (value) => {
+          resultsData =
+              Provider.of<SubjectResult>(context, listen: false).results,
+          showLoading = false,
+          firstTime = false,
+          print("resultsData.length"),
+          print(resultsData.length),
+          print(resultsData),
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Osmmas"),
@@ -16,7 +50,7 @@ class SubjectResultsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PageTitle(subjectName, false),
+                PageTitle(argmentList[0], false),
               ],
             ),
           ),
@@ -27,7 +61,6 @@ class SubjectResultsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
                   DataTable(
                       decoration: BoxDecoration(
                           color: Color.fromRGBO(255, 254, 254, 1)),
