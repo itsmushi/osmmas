@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/providers/subject_result.dart';
+import 'package:osmmas/screens/announcement_screen.dart';
 import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/dashboard_screen.dart';
 import 'package:osmmas/screens/reports_screen.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
           AverageResultsScreen.routeName: (_) => AverageResultsScreen(),
           SuggestionScreen.routeName: (_) => SuggestionScreen(),
           StudentInfoScreen.routeName: (_) => StudentInfoScreen(),
+          AnnouncementScreen.routeName:(_)=>AnnouncementScreen(),
         },
       ),
     );

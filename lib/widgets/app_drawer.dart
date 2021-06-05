@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/screens/announcement_screen.dart';
 import 'package:osmmas/screens/student_info_sreen.dart';
 import 'package:osmmas/screens/suggestion_screen.dart';
 
@@ -24,7 +25,9 @@ class AppDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              title: Text("Annoucement"),
+              title: Text("Annoucement"),onTap: () {
+                Navigator.pushNamed(context,AnnouncementScreen.routeName);
+              },
             ),
             Divider(),
             ListTile(
