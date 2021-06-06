@@ -5,6 +5,7 @@ import 'package:osmmas/providers/subject_result.dart';
 import 'package:osmmas/screens/announcement_screen.dart';
 import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/dashboard_screen.dart';
+import 'package:osmmas/screens/login.dart';
 import 'package:osmmas/screens/reports_screen.dart';
 import 'package:osmmas/screens/student_info_sreen.dart';
 import 'package:osmmas/screens/subject_list_screen.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           // fontFamily: 'Lato',
         ),
-        home: MyHomePage(),
+        home: LoginScreen(),
         routes: {
           ReportScreen.routeName: (_) => ReportScreen(),
           SubjectListScreen.routeName: (_) => SubjectListScreen(),
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
           SuggestionScreen.routeName: (_) => SuggestionScreen(),
           StudentInfoScreen.routeName: (_) => StudentInfoScreen(),
           AnnouncementScreen.routeName: (_) => AnnouncementScreen(),
+          MyHomePage.routeName: (_) => MyHomePage(),
         },
       ),
     );
@@ -76,6 +78,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  static const routeName = "home";
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
