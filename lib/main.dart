@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/providers/announcement_provider.dart';
 import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/providers/subject_result.dart';
 import 'package:osmmas/screens/announcement_screen.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: SubjectResult(),
         ),
+        ChangeNotifierProvider.value(
+          value: AnnouncementProvider(),
+        )
       ],
       child: MaterialApp(
         title: 'osmmas',
@@ -64,7 +68,7 @@ class MyApp extends StatelessWidget {
           AverageResultsScreen.routeName: (_) => AverageResultsScreen(),
           SuggestionScreen.routeName: (_) => SuggestionScreen(),
           StudentInfoScreen.routeName: (_) => StudentInfoScreen(),
-          AnnouncementScreen.routeName:(_)=>AnnouncementScreen(),
+          AnnouncementScreen.routeName: (_) => AnnouncementScreen(),
         },
       ),
     );

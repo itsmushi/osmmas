@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Announcement extends StatelessWidget {
+ final String createdOn;
+  final String announceDesc;
+  final String title;
+
+  Announcement({
+    @required this.createdOn,
+    @required this.announceDesc,
+    @required this.title,
+  });
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +23,7 @@ class Announcement extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                "2021-04-31",
+                this.createdOn,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               )
             ],
@@ -20,12 +31,12 @@ class Announcement extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 6),
             child: Text(
-              "Announcement Title",
+              this.title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           Text(
-            "Text annnouncemtn  body goes right hereeee and its veryv very loooong",
+            this.announceDesc,
             style: TextStyle(
               fontSize: 16,
             ),
