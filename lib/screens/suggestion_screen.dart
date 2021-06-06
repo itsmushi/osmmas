@@ -9,34 +9,41 @@ class SuggestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Osmmas"),
-        ),
-        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            //for the title and subtitle
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                PageTitle("SUGGESTIONS", false),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "From Parents",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color.fromRGBO(96, 100, 102, 1.0), fontSize: 16),
+      appBar: AppBar(
+        title: Text("Osmmas"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              //for the title and subtitle
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  PageTitle("SUGGESTIONS", false),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "From Parents",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Color.fromRGBO(96, 100, 102, 1.0),
+                          fontSize: 16),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            width: 500,
-            height: 600,
-            child: swipperWidget(),
-          ),
-        ]));
+            SizedBox(
+              width: 500,
+              height: 600,
+              child: swipperWidget(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

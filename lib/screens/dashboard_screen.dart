@@ -62,45 +62,47 @@ class DashboardScreen extends StatelessWidget {
                           children: [CircularProgressIndicator()],
                         ),
                       )
-                    : DataTable(
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 254, 254, 1)),
-                        columns: [
-                          DataColumn(
-                            label: Text(
-                              "#",
-                              style: TextStyle(
-                                color: Color.fromRGBO(104, 138, 126, 1),
-                                fontSize: 16,
+                    : SingleChildScrollView(
+                        child: DataTable(
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 254, 254, 1)),
+                            columns: [
+                              DataColumn(
+                                label: Text(
+                                  "#",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(104, 138, 126, 1),
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          DataColumn(
-                            label: Text("Date",
-                                style: TextStyle(
-                                  color: Color.fromRGBO(104, 138, 126, 1),
-                                  fontSize: 16,
-                                )),
-                          ),
-                          DataColumn(
-                            label: Text("Event",
-                                style: TextStyle(
-                                  color: Color.fromRGBO(104, 138, 126, 1),
-                                  fontSize: 16,
-                                )),
-                          ),
-                        ],
-                        //
-                        rows: eventsData.map(
-                          (e) {
-                            count++;
-                            return DataRow(cells: [
-                              DataCell(Text(count.toString())),
-                              DataCell(Text(e.date)),
-                              DataCell(Text(e.event))
-                            ]);
-                          },
-                        ).toList()),
+                              DataColumn(
+                                label: Text("Date",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(104, 138, 126, 1),
+                                      fontSize: 16,
+                                    )),
+                              ),
+                              DataColumn(
+                                label: Text("Event",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(104, 138, 126, 1),
+                                      fontSize: 16,
+                                    )),
+                              ),
+                            ],
+                            //
+                            rows: eventsData.map(
+                              (e) {
+                                count++;
+                                return DataRow(cells: [
+                                  DataCell(Text(count.toString())),
+                                  DataCell(Text(e.date)),
+                                  DataCell(Text(e.event))
+                                ]);
+                              },
+                            ).toList()),
+                      ),
               ],
             ),
           ),

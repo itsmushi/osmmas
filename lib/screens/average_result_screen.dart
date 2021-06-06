@@ -23,70 +23,69 @@ class AverageResultsScreen extends StatelessWidget {
             elevation: 4,
             margin: EdgeInsets.symmetric(horizontal: 16),
             child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: DataTable(
-                          
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(255, 254, 254, 1)),
-                            columns: [
-                              DataColumn(
-                                label: Text(
-                                  "#",
-                                  style: TextStyle(
-                                    color: Color.fromRGBO(104, 138, 126, 1),
-                                    fontSize: 16,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: DataTable(
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(255, 254, 254, 1)),
+                              columns: [
+                                DataColumn(
+                                  label: Text(
+                                    "#",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(104, 138, 126, 1),
+                                      fontSize: 16,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              DataColumn(
-                                label: Text("Subject",
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(104, 138, 126, 1),
-                                      fontSize: 16,
-                                    )),
-                              ),
-                              DataColumn(
-                                label: Text("Marks",
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(104, 138, 126, 1),
-                                      fontSize: 16,
-                                    )),
-                              ),
-                              DataColumn(
-                                label: Text("Grade",
-                                    style: TextStyle(
-                                      color: Color.fromRGBO(104, 138, 126, 1),
-                                      fontSize: 16,
-                                    )),
-                              )
-                            ],
-                            rows: [
-                              DataRow(cells: [
-                                DataCell(
-                                  Text("1"),
+                                DataColumn(
+                                  label: Text("Subject",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(104, 138, 126, 1),
+                                        fontSize: 16,
+                                      )),
                                 ),
-                                DataCell(
-                                 
-                                     Text("Kiswahili O-Level"),
-                                  
+                                DataColumn(
+                                  label: Text("Marks",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(104, 138, 126, 1),
+                                        fontSize: 16,
+                                      )),
                                 ),
-                                DataCell(
-                                  Text("67"),
-                                ),
-                                DataCell(
-                                  Text("B"),
+                                DataColumn(
+                                  label: Text("Grade",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(104, 138, 126, 1),
+                                        fontSize: 16,
+                                      )),
                                 )
+                              ],
+                              rows: [
+                                DataRow(cells: [
+                                  DataCell(
+                                    Text("1"),
+                                  ),
+                                  DataCell(
+                                    Text("Kiswahili O-Level"),
+                                  ),
+                                  DataCell(
+                                    Text("67"),
+                                  ),
+                                  DataCell(
+                                    Text("B"),
+                                  )
+                                ]),
                               ]),
-                            ]),
-                      ),
-                    ],
-                  ),
-                ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           )

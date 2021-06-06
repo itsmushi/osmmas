@@ -73,7 +73,7 @@ class SubjectListScreen extends StatelessWidget {
                           children: [CircularProgressIndicator()],
                         ),
                       )
-                    : buildSubjectListWidget(context,yearOfStudy),
+                    : buildSubjectListWidget(context, yearOfStudy),
               ],
             ),
           ),
@@ -82,7 +82,7 @@ class SubjectListScreen extends StatelessWidget {
     );
   }
 
-  Widget buildSubjectListWidget(BuildContext context,String yearOfStudy) {
+  Widget buildSubjectListWidget(BuildContext context, String yearOfStudy) {
     subjectListWidgets.add(Padding(
       //for the average Results
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -99,16 +99,17 @@ class SubjectListScreen extends StatelessWidget {
     subjectData.forEach((element) {
       subjectListWidgets.add(Divider());
       subjectListWidgets.add(ResultYearOfStudy(
-        year: yearOfStudy,
-        subject: element.subjectName,
-        subjectCode:element.subjectOf
-      ));
+          year: yearOfStudy,
+          subject: element.subjectName,
+          subjectCode: element.subjectOf));
     });
 
-    return Container(
-      height: 300,
-      child: ListView(
-        children: subjectListWidgets,
+    return SingleChildScrollView(
+      child: Container(
+        height: 300,
+        child: ListView(
+          children: subjectListWidgets,
+        ),
       ),
     );
   }

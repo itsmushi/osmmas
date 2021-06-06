@@ -10,24 +10,26 @@ class AnnouncementScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Osmmas"),
       ),
-      body: Column(
-        children: [
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PageTitle("ANNOUNCEMENTS", false),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PageTitle("ANNOUNCEMENTS", false),
+                ],
+              ),
             ),
-          ),
-          Announcement(),
-          Announcement(),
-          Announcement(),
-          // Announcement(),
-          // Announcement(),
-          // Announcement(),
-          // Announcement(),
-        ],
+            Announcement(),
+            Announcement(),
+            Announcement(),
+            Announcement(),
+            Announcement(),
+            Announcement(),
+            Announcement(),
+          ],
+        ),
       ),
     );
   }
