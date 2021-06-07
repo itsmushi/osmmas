@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/screens/announcement_screen.dart';
+import 'package:osmmas/screens/login.dart';
 import 'package:osmmas/screens/student_info_sreen.dart';
 import 'package:osmmas/screens/suggestion_screen.dart';
 
@@ -32,6 +33,9 @@ class AppDrawer extends StatelessWidget {
             Divider(),
             ListTile(
               title: Text("Payment"),
+              onTap: (){
+                Navigator.pushNamed(context,LoginScreen.routeName);
+              },
             ),
             Divider(),
             ListTile(

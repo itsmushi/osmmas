@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/providers/announcement_provider.dart';
+import 'package:osmmas/providers/login_provider.dart';
 import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/providers/subject_result.dart';
 import 'package:osmmas/screens/announcement_screen.dart';
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: AnnouncementProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: LoginProvider(),
         )
       ],
       child: MaterialApp(
@@ -61,7 +65,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           // fontFamily: 'Lato',
         ),
-        home: LoginScreen(),
+        home: MyHomePage(),
         routes: {
           ReportScreen.routeName: (_) => ReportScreen(),
           SubjectListScreen.routeName: (_) => SubjectListScreen(),
@@ -70,7 +74,8 @@ class MyApp extends StatelessWidget {
           SuggestionScreen.routeName: (_) => SuggestionScreen(),
           StudentInfoScreen.routeName: (_) => StudentInfoScreen(),
           AnnouncementScreen.routeName: (_) => AnnouncementScreen(),
-          MyHomePage.routeName: (_) => MyHomePage(),
+          // MyHomePage.routeName: (_) => MyHomePage(),
+          LoginScreen.routeName:(_)=>LoginScreen(),
         },
       ),
     );
