@@ -1,22 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/main.dart';
 import 'package:osmmas/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LoginScreen extends StatelessWidget {
-  static const routeName="login";
+import 'package:shared_preferences/shared_preferences.dart';
+
+class LoginScreen extends StatefulWidget {
+  static const routeName = "login";
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _url = "https://osmmas.herokuapp.com/getstarted/forgot-password.php";
 
   final _form = GlobalKey<FormState>();
 
   var username = "";
+
   var password = "";
-//  Future<void> _login(
-//     BuildContext context,
-//     String username,String password
-//   ) async {
-//     await Provider.of<LoginProvider>(context).verifyUser();
-//   }
+
+
+
+  void autoLogIn() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String token = prefs.getString('token');
+   
+
+    if (token != null) {
+      setState(() {
+       
+        Navigator.of(context).pushReplacementNamed(MyHomePage.routeName);
+      });
+      return;
+    }
+  }
+
+  void didChangeDependency() {
+    print("herere");
+    super.initState();
+    autoLogIn();
+  }
+
   void _saveForm(BuildContext context) {
     // final isValid = _form.currentState.validate();
     // if (!isValid) {
@@ -25,11 +52,15 @@ class LoginScreen extends StatelessWidget {
     _form.currentState.save();
     print(this.username);
     print(this.password);
-    Provider.of<LoginProvider>(context,listen: false)
+    Provider.of<LoginProvider>(context, listen: false)
         .verifyUser("S0485/2019/P/112", "password")
         .then(
-          (value) => print("show logged  in"),
-        );
+           
+      
+          (value) => Navigator.of(context).pushReplacementNamed(MyHomePage.routeName),
+        ).catchError((Error error){
+          print(error);
+        });
   }
 
   @override
@@ -107,7 +138,8 @@ class LoginScreen extends StatelessWidget {
                                   FlatButton(
                                       // onPressed: _launchURL,
                                       onPressed: () {
-                                        Provider.of<LoginProvider>(context,listen: false)
+                                        Provider.of<LoginProvider>(context,
+                                                listen: false)
                                             .verifyUser(
                                                 "S0485/2019/P/112", "password")
                                             .then(

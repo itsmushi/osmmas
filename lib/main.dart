@@ -15,6 +15,8 @@ import 'package:osmmas/screens/suggestion_screen.dart';
 import 'package:osmmas/widgets/app_drawer.dart';
 import 'package:provider/provider.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'providers/dashboard.dart';
 
 void main() {
@@ -65,7 +67,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           // fontFamily: 'Lato',
         ),
-        home: MyHomePage(),
+        home: LoginScreen(),
         routes: {
           ReportScreen.routeName: (_) => ReportScreen(),
           SubjectListScreen.routeName: (_) => SubjectListScreen(),
@@ -74,8 +76,8 @@ class MyApp extends StatelessWidget {
           SuggestionScreen.routeName: (_) => SuggestionScreen(),
           StudentInfoScreen.routeName: (_) => StudentInfoScreen(),
           AnnouncementScreen.routeName: (_) => AnnouncementScreen(),
-          // MyHomePage.routeName: (_) => MyHomePage(),
-          LoginScreen.routeName:(_)=>LoginScreen(),
+          MyHomePage.routeName: (_) => MyHomePage(),
+          LoginScreen.routeName: (_) => LoginScreen(),
         },
       ),
     );
@@ -89,11 +91,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<Null> _logoutUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+    prefs.setString('token', null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Osmmas"),
+        actions: [IconButton(icon: Icon(Icons.logout), onPressed: _logoutUser)],
       ),
       body: DashboardScreen(),
       drawer: AppDrawer(),

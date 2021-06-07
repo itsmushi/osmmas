@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:osmmas/models/user.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/event.dart';
 
 class LoginProvider with ChangeNotifier {
@@ -23,19 +25,13 @@ class LoginProvider with ChangeNotifier {
   Future<void> verifyUser(String username, String password) async {
     var url = Uri.parse("https://osmmasapi.herokuapp.com/api/auth/login");
     try {
-        print("request sent0");
       final response = await http
           .post(url, body: {"username": username, "password": password});
-          print("request sent");
-      final extractedData = json.decode(response.body) as Map<String,dynamic>;
+
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
       if (extractedData == null) {
         return;
       }
-      
-    
-      print(extractedData);
-
-
 
       // extractedData
       User loggedInUser = User(
@@ -43,10 +39,11 @@ class LoginProvider with ChangeNotifier {
           status: extractedData["status"],
           token: extractedData["data"]["token"]);
       _user = loggedInUser;
-      
+
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', loggedInUser.token);
+
       notifyListeners();
-      print("_user");
-      print(_user.token);
     } catch (error) {
       throw error;
     }
