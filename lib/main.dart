@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/providers/announcement_provider.dart';
 import 'package:osmmas/providers/login_provider.dart';
+import 'package:osmmas/providers/student_info_provider.dart';
 import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/providers/subject_result.dart';
 import 'package:osmmas/screens/announcement_screen.dart';
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: LoginProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: StudentInfoProvider(),
         )
       ],
       child: MaterialApp(

@@ -34,7 +34,7 @@ class AppDrawer extends StatelessWidget {
             ListTile(
               title: Text("Payment"),
               onTap: (){
-                Navigator.pushNamed(context,LoginScreen.routeName);
+               
               },
             ),
             Divider(),

@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/models/student.dart';
+import 'package:osmmas/providers/student_info_provider.dart';
 import 'package:osmmas/widgets/page_title.dart';
+import 'package:provider/provider.dart';
 
 class StudentInfoScreen extends StatelessWidget {
   static const String routeName = 'student-info';
+
+  Future<void> _refreshInfo(
+    BuildContext context,
+  ) async {
+    await Provider.of<StudentInfoProvider>(context).getStudentInfo();
+  }
+
+  bool firstTime = true;
+  int count = 1;
+  bool showLoading = true;
+  Student studentData;
+
   @override
   Widget build(BuildContext context) {
+    if (firstTime) {
+      _refreshInfo(context).then((value) => {
+            studentData =
+                Provider.of<StudentInfoProvider>(context, listen: false)
+                    .student,
+            showLoading = false,
+            firstTime = false,
+          });
+      print("st");
+      print(studentData);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Osmmas"),

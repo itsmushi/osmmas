@@ -7,8 +7,6 @@ import 'package:osmmas/models/user.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/event.dart';
-
 class LoginProvider with ChangeNotifier {
   User _user;
 
