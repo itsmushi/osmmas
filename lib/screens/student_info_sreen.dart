@@ -26,7 +26,7 @@ class StudentInfoScreen extends StatelessWidget {
                     .student,
             showLoading = false,
             firstTime = false,
-            print(studentData.name),
+  
           });
     }
 
@@ -112,7 +112,7 @@ class StudentInfoScreen extends StatelessWidget {
                                   Text("Phone Number"),
                                 ),
                                 DataCell(
-                                  Text((studentData.phone)),
+                                  Text(studentData.phone),
                                 )
                               ]),
                               DataRow(cells: [
@@ -123,7 +123,7 @@ class StudentInfoScreen extends StatelessWidget {
                                   Text("email"),
                                 ),
                                 DataCell(
-                                  Text((studentData.email)),
+                                  Text(studentData.email),
                                 )
                               ]),
                               DataRow(cells: [
@@ -134,7 +134,7 @@ class StudentInfoScreen extends StatelessWidget {
                                   Text("username"),
                                 ),
                                 DataCell(
-                                  Text((studentData.username)),
+                                  Text(studentData.username),
                                 )
                               ]),
                               DataRow(cells: [
@@ -145,7 +145,7 @@ class StudentInfoScreen extends StatelessWidget {
                                   Text("ID number"),
                                 ),
                                 DataCell(
-                                  Text((studentData.idNo)),
+                                  Text(studentData.idNo),
                                 )
                               ])
                             ])

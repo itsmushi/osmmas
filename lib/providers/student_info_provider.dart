@@ -12,7 +12,19 @@ class StudentInfoProvider with ChangeNotifier {
   Student _student;
 
   Student get student {
+    // _student.name = this.avoidNull(_student.name);
+    // // @required this.parentName,
+    // // @required this.phone,
+    _student.email = avoidNull(_student.email);
+    // // @required this.username,
+    // // @required this.idNo,
     return _student;
+  }
+
+  String avoidNull(dynamic val) {
+    if (val == null) {
+      return "";
+    }
   }
 
   Future<void> getStudentInfo() async {
@@ -28,22 +40,25 @@ class StudentInfoProvider with ChangeNotifier {
         return;
       }
 
+     
       Student student = Student(
-        name: extractedData[0]["Fname"] +
-            " " +
-            extractedData[0]["Mname"] +
-            " " +
-            extractedData[0]["Lname"],
+        name: extractedData[0]["Fname"]
+         +
+        " " +
+        extractedData[0]["Mname"] +
+        " " +
+        extractedData[0]["Lname"],
         parentName:
             extractedData[0]["Fathername"] + " " + extractedData[0]["Lname"],
         phone: extractedData[0]["fNumber"],
         email: extractedData[0]["email"],
+        // email: "emailll",
         username: extractedData[0]["username"],
         idNo: extractedData[0]["rollid"],
       );
 
       _student = student;
-
+     
       notifyListeners();
     } catch (error) {
       throw error;
