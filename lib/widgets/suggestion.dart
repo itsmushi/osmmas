@@ -3,6 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Suggestion extends StatelessWidget {
+  String title;
+  String content;
+  int upvote;
+  int downvote;
+
+  Suggestion({
+    @required this.title,
+    @required this.content,
+    @required this.upvote,
+    @required this.downvote,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,13 +31,13 @@ class Suggestion extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "Title",
+                    title,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 25, color: Colors.white),
                   ),
                   Divider(),
                   Text(
-                    "Suggestion body goes here  and  its long bro fill it",
+                    content,
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ],
@@ -38,7 +49,7 @@ class Suggestion extends StatelessWidget {
                       width: 150,
                       child: Row(
                         children: [
-                          Text("23",
+                          Text(upvote.toString(),
                               style:
                                   TextStyle(fontSize: 20, color: Colors.white)),
                           IconButton(
@@ -51,7 +62,7 @@ class Suggestion extends StatelessWidget {
                           SizedBox(
                             width: 12,
                           ),
-                          Text("2",
+                          Text(downvote.toString(),
                               style:
                                   TextStyle(fontSize: 20, color: Colors.white)),
                           IconButton(

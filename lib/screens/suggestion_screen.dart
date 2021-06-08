@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/models/suggestion_model.dart';
 import 'package:osmmas/providers/suggestion_provider.dart';
+import 'package:osmmas/widgets/loading_bar.dart';
 
 import 'package:provider/provider.dart';
 import 'package:osmmas/widgets/page_title.dart';
@@ -30,7 +31,7 @@ class SuggestionScreen extends StatelessWidget {
                     .suggestion,
             showLoading = false,
             firstTime = false,
-            print(suggestionsData),
+            print(suggestionsData[0].title),
             // announcementsData.forEach((element) {
             //   announcementWidgets.add(
             //     Announcement(
@@ -72,7 +73,11 @@ class SuggestionScreen extends StatelessWidget {
             SizedBox(
               width: 500,
               height: 600,
-              child: swipperWidget(),
+              child: showLoading
+                  ? LoadingBar()
+                  : swipperWidget(
+                      suggetions: suggestionsData,
+                    ),
             ),
           ],
         ),
@@ -84,14 +89,20 @@ class SuggestionScreen extends StatelessWidget {
 class swipperWidget extends StatelessWidget {
   const swipperWidget({
     Key key,
+    this.suggetions,
   }) : super(key: key);
+  final suggetions;
 
   @override
   Widget build(BuildContext context) {
     return Swiper(
-      itemCount: 3,
-      itemBuilder: (BuildContext context, int index) {
-        return Suggestion();
+      itemCount: this.suggetions.length,
+      itemBuilder: (BuildContext context, int suggestion) {
+        return Suggestion(
+            title: suggetions[suggestion].title,
+            content: suggetions[suggestion].content,
+            upvote: suggetions[suggestion].upvote,
+            downvote: suggetions[suggestion].downvote);
       },
       pagination: SwiperPagination(),
       control: SwiperControl(),

@@ -4,8 +4,8 @@ class SuggestionModel with ChangeNotifier {
   String userId;
   String title;
   String content;
-  String upvote;
-  String downvote;
+  int upvote;
+  int downvote;
   String regNum;
 
   SuggestionModel({

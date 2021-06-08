@@ -30,12 +30,12 @@ class SuggestionProvider with ChangeNotifier {
 
       extractedData.forEach((element) {
         loadedSuggestion.add(SuggestionModel(
-          userId: extractedData[element]["userId"],
-          title: extractedData[element]["title"],
-          content: extractedData[element]["content"],
-          upvote: extractedData[element]["upvote"],
-          downvote: extractedData[element]["downvote"],
-          regNum: extractedData[element]["regNum"],
+          userId: element["userId"],
+          title: element["title"],
+          content: element["content"],
+          upvote: element["upvote"],
+          downvote: element["downvote"],
+          regNum: element["regNum"],
         ));
       });
 
