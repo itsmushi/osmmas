@@ -4,6 +4,7 @@ import 'package:osmmas/providers/login_provider.dart';
 import 'package:osmmas/providers/student_info_provider.dart';
 import 'package:osmmas/providers/subject_list.dart';
 import 'package:osmmas/providers/subject_result.dart';
+import 'package:osmmas/providers/suggestion_provider.dart';
 import 'package:osmmas/screens/announcement_screen.dart';
 import 'package:osmmas/screens/average_result_screen.dart';
 import 'package:osmmas/screens/dashboard_screen.dart';
@@ -62,6 +63,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: StudentInfoProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: SuggestionProvider(),
         )
       ],
       child: MaterialApp(

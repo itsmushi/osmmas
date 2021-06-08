@@ -33,7 +33,7 @@ class AnnouncementScreen extends StatelessWidget {
                     .announcement,
             showLoading = false,
             firstTime = false,
-            print(announcementsData[0].title),
+           
             announcementsData.forEach((element) {
               announcementWidgets.add(
                 Announcement(

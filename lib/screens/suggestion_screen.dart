@@ -1,13 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/models/suggestion_model.dart';
+import 'package:osmmas/providers/suggestion_provider.dart';
 
+import 'package:provider/provider.dart';
 import 'package:osmmas/widgets/page_title.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:osmmas/widgets/suggestion.dart';
 
 class SuggestionScreen extends StatelessWidget {
   static const String routeName = "suggestion";
+
+  Future<void> _refreshSuggestions(
+    BuildContext context,
+  ) async {
+    await Provider.of<SuggestionProvider>(context).fetchSuggestion();
+  }
+
+  bool firstTime = true;
+  int count = 1;
+  bool showLoading = true;
+
+  List<SuggestionModel> suggestionsData;
   @override
   Widget build(BuildContext context) {
+    if (firstTime) {
+      _refreshSuggestions((context)).then((value) => {
+            suggestionsData =
+                Provider.of<SuggestionProvider>(context, listen: false)
+                    .suggestion,
+            showLoading = false,
+            firstTime = false,
+            print(suggestionsData),
+            // announcementsData.forEach((element) {
+            //   announcementWidgets.add(
+            //     Announcement(
+            //       announceDesc: element.announceDesc,
+            //       createdOn: element.createdOn,
+            //       title: element.title,
+            //     ),
+            //   );
+            // })
+          });
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Osmmas"),
