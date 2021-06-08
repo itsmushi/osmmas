@@ -6,6 +6,7 @@ import 'package:osmmas/screens/subject_result_screen.dart';
 
 import '../models/subject.dart';
 
+import 'package:osmmas/widgets/loading_bar.dart';
 import 'package:osmmas/widgets/page_title.dart';
 import 'package:osmmas/widgets/result_year_of_study.dart';
 import 'package:provider/provider.dart';
@@ -66,13 +67,7 @@ class SubjectListScreen extends StatelessWidget {
                   ),
                 ),
                 showLoading
-                    ? Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [CircularProgressIndicator()],
-                        ),
-                      )
+                    ? LoadingBar()
                     : buildSubjectListWidget(context, yearOfStudy),
               ],
             ),

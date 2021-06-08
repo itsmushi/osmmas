@@ -5,6 +5,7 @@ import 'package:osmmas/models/announcement.dart';
 import 'package:osmmas/providers/announcement_provider.dart';
 import 'package:osmmas/widgets/announcement.dart';
 import 'package:osmmas/widgets/page_title.dart';
+import 'package:osmmas/widgets/loading_bar.dart';
 
 class AnnouncementScreen extends StatelessWidget {
   static const String routeName = 'announcement';
@@ -66,13 +67,7 @@ class AnnouncementScreen extends StatelessWidget {
             //   title: "sdf",
             // ),
             showLoading
-                ? Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
-                    ),
-                  )
+                ? LoadingBar()
                 : Column(
                     children: [...announcementWidgets],
                   )

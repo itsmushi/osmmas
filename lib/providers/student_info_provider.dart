@@ -23,23 +23,27 @@ class StudentInfoProvider with ChangeNotifier {
         HttpHeaders.authorizationHeader:
             "Bearer TJAeNS6B5UJrgjf5wTBvVUXlienGZ6FM5n8bTXC3"
       });
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final extractedData = json.decode(response.body) as List<dynamic>;
       if (extractedData == null) {
         return;
       }
+
       Student student = Student(
-        name: extractedData["Fname"] +
+        name: extractedData[0]["Fname"] +
             " " +
-            extractedData["Mname"] +
+            extractedData[0]["Mname"] +
             " " +
-            extractedData["Lname"],
-        parentName: extractedData["Fathername"] + " " + extractedData["Lwanda"],
-        phone: extractedData["fNumber"],
-        email: extractedData["email"],
-        username: extractedData["username"],
-        idNo: extractedData["rollid"],
+            extractedData[0]["Lname"],
+        parentName:
+            extractedData[0]["Fathername"] + " " + extractedData[0]["Lname"],
+        phone: extractedData[0]["fNumber"],
+        email: extractedData[0]["email"],
+        username: extractedData[0]["username"],
+        idNo: extractedData[0]["rollid"],
       );
+
       _student = student;
+
       notifyListeners();
     } catch (error) {
       throw error;

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:osmmas/models/student.dart';
 import 'package:osmmas/providers/student_info_provider.dart';
+import 'package:osmmas/widgets/loading_bar.dart';
 import 'package:osmmas/widgets/page_title.dart';
 import 'package:provider/provider.dart';
 
 class StudentInfoScreen extends StatelessWidget {
   static const String routeName = 'student-info';
 
-  Future<void> _refreshInfo(
-    BuildContext context,
-  ) async {
+  Future<void> _refreshInfo(BuildContext context) async {
     await Provider.of<StudentInfoProvider>(context).getStudentInfo();
   }
 
@@ -27,9 +26,8 @@ class StudentInfoScreen extends StatelessWidget {
                     .student,
             showLoading = false,
             firstTime = false,
+            print(studentData.name),
           });
-      print("st");
-      print(studentData);
     }
 
     return Scaffold(
@@ -53,102 +51,104 @@ class StudentInfoScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DataTable(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(255, 254, 254, 1)),
-                      columns: [
-                        DataColumn(
-                          label: Text(
-                            "#",
-                            style: TextStyle(
-                              color: Color.fromRGBO(104, 138, 126, 1),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Text("Info",
-                              style: TextStyle(
-                                color: Color.fromRGBO(104, 138, 126, 1),
-                                fontSize: 16,
-                              )),
-                        ),
-                        DataColumn(
-                          label: Text("Value",
-                              style: TextStyle(
-                                color: Color.fromRGBO(104, 138, 126, 1),
-                                fontSize: 16,
-                              )),
-                        ),
-                      ],
-                      rows: [
-                        DataRow(cells: [
-                          DataCell(
-                            Text("1"),
-                          ),
-                          DataCell(
-                            Text("Name"),
-                          ),
-                          DataCell(
-                            Text("Some Name"),
-                          )
-                        ]),
-                        DataRow(cells: [
-                          DataCell(
-                            Text("2"),
-                          ),
-                          DataCell(
-                            Text("Parent Name"),
-                          ),
-                          DataCell(
-                            Text("System check"),
-                          )
-                        ]),
-                        DataRow(cells: [
-                          DataCell(
-                            Text("3"),
-                          ),
-                          DataCell(
-                            Text("Phone Number"),
-                          ),
-                          DataCell(
-                            Text("07248923"),
-                          )
-                        ]),
-                        DataRow(cells: [
-                          DataCell(
-                            Text("4"),
-                          ),
-                          DataCell(
-                            Text("email"),
-                          ),
-                          DataCell(
-                            Text("some@gmail.com"),
-                          )
-                        ]),
-                        DataRow(cells: [
-                          DataCell(
-                            Text("5"),
-                          ),
-                          DataCell(
-                            Text("username"),
-                          ),
-                          DataCell(
-                            Text("S044/42/P3/23"),
-                          )
-                        ]),
-                        DataRow(cells: [
-                          DataCell(
-                            Text("6"),
-                          ),
-                          DataCell(
-                            Text("ID number"),
-                          ),
-                          DataCell(
-                            Text("112"),
-                          )
-                        ])
-                      ])
+                  showLoading
+                      ? LoadingBar()
+                      : DataTable(
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(255, 254, 254, 1)),
+                          columns: [
+                              DataColumn(
+                                label: Text(
+                                  "#",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(104, 138, 126, 1),
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text("Info",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(104, 138, 126, 1),
+                                      fontSize: 16,
+                                    )),
+                              ),
+                              DataColumn(
+                                label: Text("Value",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(104, 138, 126, 1),
+                                      fontSize: 16,
+                                    )),
+                              ),
+                            ],
+                          rows: [
+                              DataRow(cells: [
+                                DataCell(
+                                  Text("1"),
+                                ),
+                                DataCell(
+                                  Text("Name"),
+                                ),
+                                DataCell(
+                                  Text(studentData.name),
+                                )
+                              ]),
+                              DataRow(cells: [
+                                DataCell(
+                                  Text("2"),
+                                ),
+                                DataCell(
+                                  Text("Parent Name"),
+                                ),
+                                DataCell(
+                                  Text(studentData.parentName),
+                                )
+                              ]),
+                              DataRow(cells: [
+                                DataCell(
+                                  Text("3"),
+                                ),
+                                DataCell(
+                                  Text("Phone Number"),
+                                ),
+                                DataCell(
+                                  Text((studentData.phone)),
+                                )
+                              ]),
+                              DataRow(cells: [
+                                DataCell(
+                                  Text("4"),
+                                ),
+                                DataCell(
+                                  Text("email"),
+                                ),
+                                DataCell(
+                                  Text((studentData.email)),
+                                )
+                              ]),
+                              DataRow(cells: [
+                                DataCell(
+                                  Text("5"),
+                                ),
+                                DataCell(
+                                  Text("username"),
+                                ),
+                                DataCell(
+                                  Text((studentData.username)),
+                                )
+                              ]),
+                              DataRow(cells: [
+                                DataCell(
+                                  Text("6"),
+                                ),
+                                DataCell(
+                                  Text("ID number"),
+                                ),
+                                DataCell(
+                                  Text((studentData.idNo)),
+                                )
+                              ])
+                            ])
                 ],
               ),
             ),

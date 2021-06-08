@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:osmmas/widgets/loading_bar.dart';
 
 import 'package:provider/provider.dart';
 
@@ -55,13 +56,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 showLoading
-                    ? Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [CircularProgressIndicator()],
-                        ),
-                      )
+                    ? LoadingBar()
                     : SingleChildScrollView(
                         child: DataTable(
                             decoration: BoxDecoration(
